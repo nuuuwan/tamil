@@ -10,6 +10,10 @@ const theme = createTheme({
       main: "#cccccc",
     },
   },
+  typography: {
+    fontFamily:
+      '"Noto Sans Tamil", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
+  },
 });
 
 function App() {
