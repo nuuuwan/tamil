@@ -14,7 +14,10 @@ export default function WordPage({ metadata }) {
   return (
     <Box sx={{ paddingBottom: "56px" }}>
       <MetadataView metadata={metadata} />
-      <CustomBottomNavigator onRefresh={handleRefresh} />
+      <CustomBottomNavigator
+        onRefresh={handleRefresh}
+        soundPath={metadata?.soundPath}
+      />
     </Box>
   );
 }
