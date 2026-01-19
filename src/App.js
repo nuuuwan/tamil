@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import logo from "./logo.svg";
+import HomePage from "./view/pages/HomePage";
 
 const theme = createTheme({
   palette: {
@@ -13,7 +13,11 @@ const theme = createTheme({
 });
 
 function App() {
-  return <ThemeProvider theme={theme}></ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      <HomePage />
+    </ThemeProvider>
+  );
 }
 
 export default App;

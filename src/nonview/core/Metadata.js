@@ -1,8 +1,7 @@
 export default class Metadata {
-  static REMOTE_URL =
+  static REMOTE_URL_BASE =
     "https://raw.githubusercontent.com" +
-    "/nuuuwan/word_sound_picture" +
-    "/refs/heads/main/data/wsp/aggregate.json";
+    "/nuuuwan/word_sound_picture/refs/heads/main/";
 
   constructor({ enWord, taWord, soundPath, picturePath }) {
     this.enWord = enWord;
@@ -15,13 +14,14 @@ export default class Metadata {
     return new Metadata({
       enWord: data.en_word,
       taWord: data.ta_word,
-      soundPath: data.sound_path,
-      picturePath: data.picture_path,
+      soundPath: Metadata.REMOTE_URL_BASE + data.sound_path,
+      picturePath: Metadata.REMOTE_URL_BASE + data.picture_path,
     });
   }
 
   static async listAll() {
-    const response = await fetch(Metadata.REMOTE_URL);
+    const urlAggregate = Metadata.REMOTE_URL_BASE + "data/wsp/aggregate.json";
+    const response = await fetch(urlAggregate);
     const data = await response.json();
     return data.map((item) => Metadata.fromData(item));
   }
