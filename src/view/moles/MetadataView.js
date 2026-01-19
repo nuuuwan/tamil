@@ -10,8 +10,7 @@ export default function MetadataView({ metadata }) {
     setImageLoaded(false);
   }, [metadata]);
 
-  const showSkeleton =
-    !metadata || (metadata && metadata.picturePath && !imageLoaded);
+  const showSkeleton = metadata && metadata.picturePath && !imageLoaded;
 
   return (
     <Box
@@ -35,7 +34,7 @@ export default function MetadataView({ metadata }) {
       {!metadata && <LoadingView />}
 
       {metadata && metadata.picturePath && (
-        <Box sx={{ marginBottom: "20px" }}>
+        <Box key={"image" + metadata.taWord} sx={{ marginBottom: "20px" }}>
           <img
             src={metadata.picturePath}
             alt={metadata.enWord}
@@ -53,7 +52,7 @@ export default function MetadataView({ metadata }) {
       )}
 
       {metadata && (
-        <>
+        <Box key={"text" + metadata.taWord}>
           <Box sx={{ marginBottom: "20px" }}>
             <Typography variant="h3" fontWeight="bold" align="center">
               {metadata.taWord}
@@ -65,7 +64,7 @@ export default function MetadataView({ metadata }) {
               <PlayAudioButton soundPath={metadata.soundPath} />
             </Box>
           )}
-        </>
+        </Box>
       )}
     </Box>
   );
