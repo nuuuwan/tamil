@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Skeleton } from "@mui/material";
 import LoadingView from "../atoms/LoadingView";
+import PlayAudioButton from "../atoms/PlayAudioButton";
 
 export default function MetadataView({ metadata }) {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -61,10 +62,7 @@ export default function MetadataView({ metadata }) {
 
           {metadata.soundPath && (
             <Box sx={{ marginBottom: "20px" }}>
-              <audio controls>
-                <source src={metadata.soundPath} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
+              <PlayAudioButton soundPath={metadata.soundPath} />
             </Box>
           )}
         </>
