@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Box } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import Metadata from "../../nonview/core/Metadata";
@@ -10,26 +10,28 @@ export default function HomePage() {
   const navigate = useNavigate();
   const [metadata, setMetadata] = useState(null);
 
-  async function loadMetadata(taWord) {
-    let foundMetadata;
-    if (taWord) {
-      foundMetadata = await Metadata.fromWord(taWord);
-    }
-    if (!foundMetadata) {
-      foundMetadata = await Metadata.fromRandom();
-    }
-    if (foundMetadata) {
-      setMetadata(foundMetadata);
-      if (!taWord) {
-        navigate(`/${foundMetadata.taWord}`, { replace: true });
+  const loadMetadata = useCallback(
+    async (word) => {
+      let foundMetadata;
+      if (word) {
+        foundMetadata = await Metadata.fromWord(word);
       }
-    }
-  }
+      if (!foundMetadata) {
+        foundMetadata = await Metadata.fromRandom();
+      }
+      if (foundMetadata) {
+        setMetadata(foundMetadata);
+        if (!word) {
+          navigate(`/${foundMetadata.taWord}`, { replace: true });
+        }
+      }
+    },
+    [navigate],
+  );
 
   useEffect(() => {
     loadMetadata(taWord);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [taWord]);
+  }, [loadMetadata, taWord]);
 
   const handleRefresh = () => {
     loadMetadata();

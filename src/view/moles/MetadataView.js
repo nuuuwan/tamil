@@ -1,9 +1,10 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import LoadingView from "../atoms/LoadingView";
 
 export default function MetadataView({ metadata }) {
   if (!metadata) {
-    return <Typography align="center">ஏற்றுகிறது...</Typography>;
+    return <LoadingView />;
   }
 
   return (
