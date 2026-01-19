@@ -1,6 +1,7 @@
 import React from "react";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 export default function CustomBottomNavigator({ onNext }) {
   return (
@@ -9,6 +10,10 @@ export default function CustomBottomNavigator({ onNext }) {
       elevation={3}
     >
       <BottomNavigation showLabels>
+        <BottomNavigationAction
+          icon={<RefreshIcon color="secondary" />}
+          onClick={() => window.location.reload()}
+        />
         <BottomNavigationAction
           icon={<ArrowForwardIosIcon color="primary" />}
           onClick={onNext}
