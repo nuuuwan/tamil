@@ -1,7 +1,16 @@
+import { useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 import LoadingView from "../atoms/LoadingView";
 
 export default function MetadataView({ metadata }) {
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    if (metadata?.soundPath && audioRef.current) {
+      audioRef.current.play();
+    }
+  }, [metadata]);
+
   if (!metadata) {
     return <LoadingView />;
   }
@@ -14,6 +23,9 @@ export default function MetadataView({ metadata }) {
         textAlign: "center",
       }}
     >
+      <audio ref={audioRef}>
+        <source src={metadata.soundPath} type="audio/mpeg" />
+      </audio>
       <Box sx={{ marginBottom: "20px" }}>
         <img
           src={metadata.picturePath}
