@@ -9,7 +9,6 @@ export default function MetadataView({ metadata }) {
   return (
     <Box
       sx={{
-        padding: "20px",
         maxWidth: "600px",
         margin: "0 auto",
         textAlign: "center",
@@ -20,7 +19,13 @@ export default function MetadataView({ metadata }) {
           <img
             src={metadata.picturePath}
             alt={metadata.enWord}
-            style={{ maxWidth: "100%", height: "auto" }}
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+              top: 0,
+              left: 0,
+              right: 0,
+            }}
           />
         </Box>
       )}
