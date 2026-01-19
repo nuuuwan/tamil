@@ -15,37 +15,30 @@ export default function MetadataView({ metadata }) {
     return <LoadingView />;
   }
   return (
-    <Box
-      key={metadata.taWord}
-      sx={{
-        maxWidth: "600px",
-        margin: "0 auto",
-        textAlign: "center",
-      }}
-    >
+    <Box key={metadata.taWord}>
       <audio ref={audioRef}>
         <source src={metadata.soundPath} type="audio/mpeg" />
       </audio>
-      <Box sx={{ marginBottom: "20px" }}>
+      <Box
+        sx={{
+          position: "fixed",
+          width: "calc(min(100vw, 640px))",
+          height: "auto",
+          top: 0,
+          left: 0,
+          right: 0,
+          margin: "auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         <img
           src={metadata.picturePath}
           alt={metadata.taWord}
-          style={{
-            position: "absolute",
-            width: "100vw",
-            height: "auto",
-            top: 0,
-            left: 0,
-            right: 0,
-          }}
+          style={{ width: "100%" }}
         />
-      </Box>
-      <Box sx={{ position: "absolute", bottom: "20%", left: 0, right: 0 }}>
-        <Box sx={{ marginBottom: "20px" }}>
-          <Typography variant="h4" align="center">
-            {metadata.taWord}
-          </Typography>
-        </Box>
+        <Typography variant="h4">{metadata.taWord}</Typography>
       </Box>
     </Box>
   );

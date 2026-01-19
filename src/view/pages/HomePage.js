@@ -38,7 +38,7 @@ export default function HomePage() {
   };
 
   return (
-    <Box sx={{ paddingBottom: "56px" }}>
+    <Box>
       <MetadataView metadata={metadata} />
       <CustomBottomNavigator
         onNext={handleOnNext}
