@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Box, Typography, Paper } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import LoadingView from "../atoms/LoadingView";
 
 export default function MetadataView({ metadata }) {
