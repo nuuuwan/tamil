@@ -33,7 +33,7 @@ export default function HomePage() {
     loadMetadata(taWord);
   }, [loadMetadata, taWord]);
 
-  const handleRefresh = () => {
+  const handleOnNext = () => {
     loadMetadata();
   };
 
@@ -41,7 +41,7 @@ export default function HomePage() {
     <Box sx={{ paddingBottom: "56px" }}>
       <MetadataView metadata={metadata} />
       <CustomBottomNavigator
-        onRefresh={handleRefresh}
+        onNext={handleOnNext}
         soundPath={metadata?.soundPath}
       />
     </Box>
