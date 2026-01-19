@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { IconButton } from "@mui/material";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import { Box } from "@mui/system";
 
 export default function PlayAudioButton({ soundPath }) {
   const audioRef = useRef(null);
@@ -12,7 +13,7 @@ export default function PlayAudioButton({ soundPath }) {
   };
 
   return (
-    <>
+    <Box key={soundPath}>
       <audio ref={audioRef}>
         <source src={soundPath} type="audio/mpeg" />
       </audio>
@@ -24,6 +25,6 @@ export default function PlayAudioButton({ soundPath }) {
       >
         <VolumeUpIcon fontSize="large" />
       </IconButton>
-    </>
+    </Box>
   );
 }
