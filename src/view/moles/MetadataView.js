@@ -10,7 +10,7 @@ export default function MetadataView({ metadata }) {
     setImageLoaded(false);
   }, [metadata]);
 
-  const showSkeleton = metadata && metadata.picturePath && !imageLoaded;
+  console.debug(metadata?.picturePath);
 
   return (
     <Box
@@ -20,7 +20,7 @@ export default function MetadataView({ metadata }) {
         textAlign: "center",
       }}
     >
-      {showSkeleton && (
+      {metadata && metadata.picturePath && !imageLoaded && (
         <Box sx={{ marginBottom: "20px" }}>
           <Skeleton
             variant="rectangular"
@@ -31,15 +31,13 @@ export default function MetadataView({ metadata }) {
         </Box>
       )}
 
-      {!metadata && <LoadingView />}
-
       {metadata && metadata.picturePath && (
         <Box key={"image" + metadata.taWord} sx={{ marginBottom: "20px" }}>
           <img
             src={metadata.picturePath}
             alt={metadata.enWord}
             style={{
-              maxWidth: "100%",
+              width: "calc(min(100vw, 640px))",
               height: "auto",
               top: 0,
               left: 0,
@@ -51,7 +49,7 @@ export default function MetadataView({ metadata }) {
         </Box>
       )}
 
-      {metadata && (
+      {metadata && metadata.picturePath && imageLoaded && (
         <Box key={"text" + metadata.taWord}>
           <Box sx={{ marginBottom: "20px" }}>
             <Typography variant="h3" fontWeight="bold" align="center">
@@ -66,6 +64,8 @@ export default function MetadataView({ metadata }) {
           )}
         </Box>
       )}
+
+      {!imageLoaded && <LoadingView />}
     </Box>
   );
 }
