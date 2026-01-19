@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Paper } from "@mui/material";
 import LoadingView from "../atoms/LoadingView";
 
 export default function MetadataView({ metadata }) {
@@ -33,12 +33,15 @@ export default function MetadataView({ metadata }) {
           alignItems: "center",
         }}
       >
+        <Typography variant="h4" sx={{ margin: "1em" }}>
+          {metadata.taWord}
+        </Typography>
+
         <img
           src={metadata.picturePath}
           alt={metadata.taWord}
           style={{ width: "100%" }}
         />
-        <Typography variant="h4">{metadata.taWord}</Typography>
       </Box>
     </Box>
   );
