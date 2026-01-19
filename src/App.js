@@ -1,4 +1,5 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./view/pages/HomePage";
 
 const theme = createTheme({
@@ -19,7 +20,12 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <HomePage />
+      <Router basename="/tamil">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/:taWord" element={<HomePage />} />
+        </Routes>
+      </Router>
     </ThemeProvider>
   );
 }

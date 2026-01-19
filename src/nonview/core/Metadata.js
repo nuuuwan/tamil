@@ -26,9 +26,23 @@ export default class Metadata {
     return data.map((item) => Metadata.fromData(item));
   }
 
-  static async random() {
+  static async idx() {
+    const all = await Metadata.listAll();
+    const index = {};
+    all.forEach((m) => {
+      index[m.taWord] = m;
+    });
+    return index;
+  }
+
+  static async fromRandom() {
     const all = await Metadata.listAll();
     const index = Math.floor(Math.random() * all.length);
     return all[index];
+  }
+
+  static async fromWord(taWord) {
+    const idx = await Metadata.idx();
+    return idx[taWord] || null;
   }
 }
