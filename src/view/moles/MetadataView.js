@@ -30,7 +30,7 @@ export default function MetadataView({ metadata }) {
         </Box>
       )}
       <Box sx={{ marginBottom: "20px" }}>
-        <Typography variant="h5" fontWeight="bold" align="center">
+        <Typography variant="h3" fontWeight="bold" align="center">
           {metadata.taWord}
         </Typography>
       </Box>
