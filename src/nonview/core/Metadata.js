@@ -23,7 +23,9 @@ export default class Metadata {
     const urlAggregate = Metadata.REMOTE_URL_BASE + "data/wsp/aggregate.json";
     const response = await fetch(urlAggregate);
     const data = await response.json();
-    return data.map((item) => Metadata.fromData(item));
+    const metadataList = data.map((item) => Metadata.fromData(item));
+    console.debug(`Loaded ${metadataList.length} items.`);
+    return metadataList;
   }
 
   static async idx() {
