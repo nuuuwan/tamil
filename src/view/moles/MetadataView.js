@@ -31,7 +31,7 @@ export default function MetadataView({
         sx={{
           position: "fixed",
           width: "calc(min(100vw, 640px))",
-          height: "auto",
+          height: "100vh",
           top: 0,
           left: 0,
           right: 0,
@@ -39,6 +39,7 @@ export default function MetadataView({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "space-between",
           paddingBottom: "100px",
         }}
       >
@@ -48,15 +49,25 @@ export default function MetadataView({
           style={{ width: "100%", marginBottom: "1em" }}
         />
 
-        <ChoicesView
-          metadata={metadata}
-          wrongChoices={wrongChoices}
-          onAnswerSelect={onAnswerSelect}
-          onNext={onNext}
-        />
-        <Typography variant="caption" sx={{ margin: "1em" }}>
-          {nRightAnswers}/{totalQuestions}
-        </Typography>
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginBottom: "1em",
+          }}
+        >
+          <Typography variant="caption" sx={{ margin: "1em" }}>
+            {nRightAnswers}/{totalQuestions}
+          </Typography>
+          <ChoicesView
+            metadata={metadata}
+            wrongChoices={wrongChoices}
+            onAnswerSelect={onAnswerSelect}
+            onNext={onNext}
+          />
+        </Box>
       </Box>
     </Box>
   );
