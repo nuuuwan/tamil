@@ -1,8 +1,15 @@
 import { useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 import LoadingView from "../atoms/LoadingView";
+import ChoicesView from "./ChoicesView";
 
-export default function MetadataView({ metadata }) {
+export default function MetadataView({
+  metadata,
+  wrongChoices = [],
+  onAnswerSelect,
+  nRightAnswers = 0,
+  totalQuestions = 0,
+}) {
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -31,17 +38,23 @@ export default function MetadataView({ metadata }) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          paddingBottom: "100px",
         }}
       >
-        <Typography variant="h4" sx={{ margin: "1em" }}>
-          {metadata.taWord}
-        </Typography>
-
         <img
           src={metadata.picturePath}
           alt={metadata.taWord}
-          style={{ width: "100%" }}
+          style={{ width: "100%", marginBottom: "1em" }}
         />
+
+        <ChoicesView
+          metadata={metadata}
+          wrongChoices={wrongChoices}
+          onAnswerSelect={onAnswerSelect}
+        />
+        <Typography variant="caption" sx={{ margin: "1em" }}>
+          {nRightAnswers}/{totalQuestions}
+        </Typography>
       </Box>
     </Box>
   );

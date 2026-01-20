@@ -9,6 +9,9 @@ export default function HomePage() {
   const { taWord } = useParams();
   const navigate = useNavigate();
   const [metadata, setMetadata] = useState(null);
+  const [wrongChoices, setWrongChoices] = useState([]);
+  const [nRightAnswers, setNRightAnswers] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(0);
 
   const loadMetadata = useCallback(
     async (word) => {
@@ -20,7 +23,15 @@ export default function HomePage() {
         foundMetadata = await Metadata.fromRandom();
       }
       if (foundMetadata) {
+        // Get 3 random wrong choices
+        const allMetadata = await Metadata.listAll();
+        const wrongOptions = allMetadata
+          .filter((m) => m.taWord !== foundMetadata.taWord)
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 3);
+
         setMetadata(foundMetadata);
+        setWrongChoices(wrongOptions);
         if (!word) {
           navigate(`/${foundMetadata.taWord}`, { replace: true });
         }
@@ -37,9 +48,22 @@ export default function HomePage() {
     loadMetadata();
   };
 
+  const handleAnswerSelect = (isCorrect) => {
+    setTotalQuestions((prev) => prev + 1);
+    if (isCorrect) {
+      setNRightAnswers((prev) => prev + 1);
+    }
+  };
+
   return (
     <Box>
-      <MetadataView metadata={metadata} />
+      <MetadataView
+        metadata={metadata}
+        wrongChoices={wrongChoices}
+        onAnswerSelect={handleAnswerSelect}
+        nRightAnswers={nRightAnswers}
+        totalQuestions={totalQuestions}
+      />
       <CustomBottomNavigator
         onNext={handleOnNext}
         soundPath={metadata?.soundPath}
