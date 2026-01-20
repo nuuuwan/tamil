@@ -1,5 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CancelIcon from "@mui/icons-material/Cancel";
 import TamilTextView from "../atoms/TamilTextView";
 
 export default function ChoicesView({
@@ -34,6 +36,8 @@ export default function ChoicesView({
     }
   };
 
+  const isCorrectAnswer = selectedAnswer === metadata.taWord;
+
   return (
     <Box
       sx={{
@@ -45,86 +49,109 @@ export default function ChoicesView({
         alignItems: "center",
       }}
     >
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
-          gap: "10px",
-          width: "100%",
-        }}
-      >
-        {choices.map((choice) => {
-          const isSelected = selectedAnswer === choice.taWord;
-          const isCorrect = choice.taWord === metadata.taWord;
-          const showResult = hasAnswered;
-
-          let backgroundColor = "white";
-          if (showResult) {
-            if (isCorrect) {
-              backgroundColor = "#4caf50";
-            } else if (isSelected && !isCorrect) {
-              backgroundColor = "#f44336";
-            }
-          }
-
-          return (
-            <Button
-              key={choice.taWord}
-              variant="contained"
-              onClick={() => handleChoiceClick(choice)}
-              disabled={hasAnswered}
-              sx={{
-                backgroundColor,
-                color:
-                  showResult && (isCorrect || isSelected) ? "white" : "black",
-                "&:hover": {
-                  backgroundColor: showResult ? backgroundColor : "#e0e0e0",
-                },
-                "&.Mui-disabled": {
-                  backgroundColor,
-                  color:
-                    showResult && (isCorrect || isSelected) ? "white" : "black",
-                },
-                fontSize: "0.9em",
-                padding: "10px 15px",
-                minHeight: "50px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
-                whiteSpace: "normal",
-                overflow: "visible",
-              }}
-            >
-              <TamilTextView
-                text={choice.taWord}
-                sx={{
-                  color: "inherit",
-                  "& span": {
-                    color:
-                      showResult && (isCorrect || isSelected)
-                        ? "white !important"
-                        : "inherit",
-                  },
-                }}
-              />
-            </Button>
-          );
-        })}
-      </Box>
-      {hasAnswered && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={onNext}
+      {!hasAnswered ? (
+        <Box
           sx={{
-            fontSize: "1.2em",
-            padding: "15px 40px",
-            marginTop: "10px",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+            gap: "10px",
+            width: "100%",
           }}
         >
-          அடுத்தது
-        </Button>
+          {choices.map((choice) => {
+            return (
+              <Button
+                key={choice.taWord}
+                variant="contained"
+                onClick={() => handleChoiceClick(choice)}
+                sx={{
+                  backgroundColor: "white",
+                  color: "black",
+                  "&:hover": {
+                    backgroundColor: "#e0e0e0",
+                  },
+                  fontSize: "0.9em",
+                  padding: "10px 15px",
+                  minHeight: "50px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  whiteSpace: "normal",
+                  overflow: "visible",
+                }}
+              >
+                <TamilTextView text={choice.taWord} />
+              </Button>
+            );
+          })}
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "20px",
+            width: "100%",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            {isCorrectAnswer ? (
+              <CheckCircleIcon
+                sx={{ fontSize: "2.5em", color: "#4caf50" }}
+              />
+            ) : (
+              <CancelIcon sx={{ fontSize: "2.5em", color: "#f44336" }} />
+            )}
+            <Typography
+              variant="h5"
+              sx={{
+                color: isCorrectAnswer ? "#4caf50" : "#f44336",
+                fontWeight: "bold",
+                fontSize: "1.5em",
+              }}
+            >
+              {isCorrectAnswer ? "சரி!" : "தவறு!"}
+            </Typography>
+          </Box>
+
+          {!isCorrectAnswer && (
+            <Box sx={{ textAlign: "center" }}>
+              <Typography variant="caption" sx={{ fontSize: "0.9em" }}>
+                சரியான விடை:
+              </Typography>
+              <Box
+                sx={{
+                  fontSize: "1.5em",
+                  fontWeight: "600",
+                  marginTop: "10px",
+                }}
+              >
+                <TamilTextView text={metadata.taWord} />
+              </Box>
+            </Box>
+          )}
+
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={onNext}
+            sx={{
+              fontSize: "1.2em",
+              padding: "15px 40px",
+              marginTop: "10px",
+            }}
+          >
+            அடுத்தது
+          </Button>
+        </Box>
       )}
     </Box>
   );
