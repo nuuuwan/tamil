@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/tamil/static/css/main.970f0a42.css",
-    "main.js": "/tamil/static/js/main.c9f2c285.js",
+    "main.js": "/tamil/static/js/main.3329a840.js",
     "static/js/453.fb43f999.chunk.js": "/tamil/static/js/453.fb43f999.chunk.js",
     "index.html": "/tamil/index.html",
     "main.970f0a42.css.map": "/tamil/static/css/main.970f0a42.css.map",
-    "main.c9f2c285.js.map": "/tamil/static/js/main.c9f2c285.js.map",
+    "main.3329a840.js.map": "/tamil/static/js/main.3329a840.js.map",
     "453.fb43f999.chunk.js.map": "/tamil/static/js/453.fb43f999.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.970f0a42.css",
-    "static/js/main.c9f2c285.js"
+    "static/js/main.3329a840.js"
   ]
 }
