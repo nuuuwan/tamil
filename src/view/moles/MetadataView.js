@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import LoadingView from "../atoms/LoadingView";
 import ChoicesView from "./ChoicesView";
 
@@ -58,9 +59,19 @@ export default function MetadataView({
             marginBottom: "1em",
           }}
         >
-          <Typography variant="caption" sx={{ margin: "1em" }}>
-            {nRightAnswers}/{totalQuestions}
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              margin: "1em",
+            }}
+          >
+            <EmojiEventsIcon sx={{ fontSize: "1.2em", color: "#666" }} />
+            <Typography variant="caption">
+              {nRightAnswers}/{totalQuestions}
+            </Typography>
+          </Box>
           <ChoicesView
             metadata={metadata}
             wrongChoices={wrongChoices}

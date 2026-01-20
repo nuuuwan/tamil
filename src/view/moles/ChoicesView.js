@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import TamilTextView from "../atoms/TamilTextView";
 
 export default function ChoicesView({
@@ -104,9 +105,7 @@ export default function ChoicesView({
             }}
           >
             {isCorrectAnswer ? (
-              <CheckCircleIcon
-                sx={{ fontSize: "2.5em", color: "#4caf50" }}
-              />
+              <CheckCircleIcon sx={{ fontSize: "2.5em", color: "#4caf50" }} />
             ) : (
               <CancelIcon sx={{ fontSize: "2.5em", color: "#f44336" }} />
             )}
@@ -143,6 +142,7 @@ export default function ChoicesView({
             variant="contained"
             color="primary"
             onClick={onNext}
+            endIcon={<ArrowForwardIcon />}
             sx={{
               fontSize: "1.2em",
               padding: "15px 40px",
