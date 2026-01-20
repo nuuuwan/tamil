@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import LoadingView from "../atoms/LoadingView";
@@ -12,22 +11,11 @@ export default function MetadataView({
   nRightAnswers = 0,
   totalQuestions = 0,
 }) {
-  const audioRef = useRef(null);
-
-  useEffect(() => {
-    if (metadata?.soundPath && audioRef.current) {
-      audioRef.current.play();
-    }
-  }, [metadata]);
-
   if (!metadata) {
     return <LoadingView />;
   }
   return (
     <Box key={metadata.taWord}>
-      <audio ref={audioRef}>
-        <source src={metadata.soundPath} type="audio/mpeg" />
-      </audio>
       <Box
         sx={{
           position: "fixed",
