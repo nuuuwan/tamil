@@ -35,7 +35,7 @@ export default function MetadataView({
         <img
           src={metadata.picturePath}
           alt={metadata.taWord}
-          style={{ width: "100%", marginBottom: "1em" }}
+          style={{ width: "calc(min(320px, 100vw))", marginBottom: "1em" }}
         />
 
         <Box
@@ -44,7 +44,7 @@ export default function MetadataView({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            marginBottom: "1em",
+            marginBottom: "3em",
           }}
         >
           <Box
