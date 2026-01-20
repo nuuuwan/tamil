@@ -7,6 +7,7 @@ export default function MetadataView({
   metadata,
   wrongChoices = [],
   onAnswerSelect,
+  onNext,
   nRightAnswers = 0,
   totalQuestions = 0,
 }) {
@@ -51,6 +52,7 @@ export default function MetadataView({
           metadata={metadata}
           wrongChoices={wrongChoices}
           onAnswerSelect={onAnswerSelect}
+          onNext={onNext}
         />
         <Typography variant="caption" sx={{ margin: "1em" }}>
           {nRightAnswers}/{totalQuestions}

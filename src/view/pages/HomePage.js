@@ -3,7 +3,6 @@ import { Box } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import Metadata from "../../nonview/core/Metadata";
 import MetadataView from "../moles/MetadataView";
-import CustomBottomNavigator from "../moles/CustomBottomNavigator";
 
 export default function HomePage() {
   const { taWord } = useParams();
@@ -61,12 +60,9 @@ export default function HomePage() {
         metadata={metadata}
         wrongChoices={wrongChoices}
         onAnswerSelect={handleAnswerSelect}
+        onNext={handleOnNext}
         nRightAnswers={nRightAnswers}
         totalQuestions={totalQuestions}
-      />
-      <CustomBottomNavigator
-        onNext={handleOnNext}
-        soundPath={metadata?.soundPath}
       />
     </Box>
   );
