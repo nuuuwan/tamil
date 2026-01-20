@@ -1,4 +1,4 @@
-# Tamil
+# Learning Tamil
 
 I’ve tried learning Tamil as an adult, with mixed results.
 
