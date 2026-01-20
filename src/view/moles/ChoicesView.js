@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { Box, Button } from "@mui/material";
+import TamilTextView from "../atoms/TamilTextView";
 
 export default function ChoicesView({
   metadata,
@@ -91,12 +92,22 @@ export default function ChoicesView({
                 alignItems: "center",
                 justifyContent: "center",
                 textAlign: "center",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
+                whiteSpace: "normal",
+                overflow: "visible",
               }}
             >
-              {choice.taWord}
+              <TamilTextView
+                text={choice.taWord}
+                sx={{
+                  color: "inherit",
+                  "& span": {
+                    color:
+                      showResult && (isCorrect || isSelected)
+                        ? "white !important"
+                        : "inherit",
+                  },
+                }}
+              />
             </Button>
           );
         })}
